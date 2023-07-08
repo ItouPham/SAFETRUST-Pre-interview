@@ -1,0 +1,239 @@
+
+--------------------------------------------------------SAFETRUST Pre-interview------------------------------------------------------------
+
+1. Create new contact
+- URI:/contact
+- Method: Post
+- Body: 
+{
+	String name,	(required)
+	String email,	(required)
+	String address,	(required)
+	String telephoneNumber,	(required)
+	String postalAddress	(required)
+}
+
+--------------------------------Example--------------------------------------
+- URI: http://localhost:8080/contact
+- Input:
+{
+    "name": "Testing",
+    "email": "testing1@gmail.com",
+    "address": "HCM",
+    "telephoneNumber": "0388899999",
+    "postalAddress": "91000"
+}
+
+- Output:
+{
+    "contact": {
+        "id": "720dcc58-6179-48af-b94d-37b5c4c9fe9e",
+        "name": "Testing",
+        "email": "testing1@gmail.com",
+        "address": "HCM",
+        "telephoneNumber": "0388899999",
+        "postalAddress": "91000"
+    },
+    "message": "Add new contact successfully"
+}
+
+
+
+==============================================================================
+2. Update contact
+- URI:/contact/{id}
+- Method: Put
+- Path variable: String id
+- Body: 
+{
+	String name,
+	String email,
+	String address,
+	String telephoneNumber,
+	String postalAddress
+}
+
+--------------------------------Example--------------------------------------
+- URI: http://localhost:8080/contact/720dcc58-6179-48af-b94d-37b5c4c9fe9e
+- Input:
+{
+    "name": "Testing1",
+    "email": "testing2@gmail.com",
+    "address": "HCM",
+    "telephoneNumber": "0388877777",
+    "postalAddress": "92000"
+}
+
+- Output:
+{
+    "contact": {
+        "id": "720dcc58-6179-48af-b94d-37b5c4c9fe9e",
+        "name": "Testing1",
+        "email": "testing2@gmail.com",
+        "address": "HCM",
+        "telephoneNumber": "0388877777",
+        "postalAddress": "92000"
+    },
+    "message": "Update contact successfully"
+}
+
+
+
+
+==============================================================================
+
+3. Get all contacts
+- URI:/contact?page={page}&size={size}
+- Method: Get
+- Request param: int page (default = 1)
+				 int size (default = 10)
+				 
+--------------------------------Example--------------------------------------
+- URI: http://localhost:8080/contact?page=1&size=5
+
+- Output:
+{
+    "contacts": [
+        {
+            "id": "11a34ddc-f9a7-4557-9738-febe82f7d9d5",
+            "name": "Van Pham",
+            "email": "phamvan@gmail.com",
+            "address": "HCM",
+            "telephoneNumber": "0388811112",
+            "postalAddress": "91000"
+        },
+        {
+            "id": "188cdf7a-3440-4612-bdde-4e797ffae9c5",
+            "name": "Cuong Pham",
+            "email": "cuongpv@gmail.com",
+            "address": "SG",
+            "telephoneNumber": "0388811113",
+            "postalAddress": "91000"
+        },
+        {
+            "id": "20e2706b-de65-495c-85d1-0d73ed63aa9a",
+            "name": "Viet Cuong",
+            "email": "cuongpv1@gmail.com",
+            "address": "SG",
+            "telephoneNumber": "0388811114",
+            "postalAddress": "91000"
+        },
+        {
+            "id": "21359d76-d68b-4a51-aa77-f8fcc87bc497",
+            "name": "Van Pham",
+            "email": "phamvan@gmail.com",
+            "address": "HCM",
+            "telephoneNumber": "0388811111",
+            "postalAddress": "91000"
+        },
+        {
+            "id": "526207b9-8835-4c81-887f-05efa7a7770f",
+            "name": "Ha Nguyen",
+            "email": "hanguyen@gmail.com",
+            "address": "HCM",
+            "telephoneNumber": "0388822222",
+            "postalAddress": "91000"
+        }
+    ],
+    "currentPage": 1,
+    "totalItems": 7,
+    "totalPages": 2,
+    "message": "Get data successfully"
+}
+
+
+
+
+==============================================================================
+
+4. Get contact by Id
+- URI:/contact/{id}
+- Method: Get
+- Path variable: String id
+
+--------------------------------Example--------------------------------------
+- URI: http://localhost:8080/contact/720dcc58-6179-48af-b94d-37b5c4c9fe9e
+
+- Output:
+{
+    "contact": {
+        "id": "720dcc58-6179-48af-b94d-37b5c4c9fe9e",
+        "name": "Testing1",
+        "email": "testing2@gmail.com",
+        "address": "HCM",
+        "telephoneNumber": "0388877777",
+        "postalAddress": "92000"
+    },
+    "message": "Get data successfully"
+}
+
+
+
+
+==============================================================================
+
+5. Delete contact
+- URI:/contact/{id}
+- Method: Delete
+- Path variable: String id
+
+--------------------------------Example--------------------------------------
+- URI: http://localhost:8080/contact/720dcc58-6179-48af-b94d-37b5c4c9fe9e
+
+- Output:
+{
+    "contact": null,
+    "message": "Delete contact successfully"
+}
+
+
+
+==============================================================================
+
+6. Search contact by name(first name/ last name/ full name)
+- URI:/contact/search
+- Method: Get
+- Body:
+{
+	String keyword (required)
+}
+
+--------------------------------Example--------------------------------------
+- URI: http://localhost:8080/contact/search
+- Input: 
+{
+    "keyword": "Pham"
+}
+- Output:
+{
+    "contacts": [
+        {
+            "id": "11a34ddc-f9a7-4557-9738-febe82f7d9d5",
+            "name": "Van Pham",
+            "email": "phamvan@gmail.com",
+            "address": "HCM",
+            "telephoneNumber": "0388811112",
+            "postalAddress": "91000"
+        },
+        {
+            "id": "188cdf7a-3440-4612-bdde-4e797ffae9c5",
+            "name": "Cuong Pham",
+            "email": "cuongpv@gmail.com",
+            "address": "SG",
+            "telephoneNumber": "0388811113",
+            "postalAddress": "91000"
+        },
+        {
+            "id": "21359d76-d68b-4a51-aa77-f8fcc87bc497",
+            "name": "Van Pham",
+            "email": "phamvan@gmail.com",
+            "address": "HCM",
+            "telephoneNumber": "0388811111",
+            "postalAddress": "91000"
+        }
+    ],
+    "currentPage": 0,
+    "totalItems": 0,
+    "totalPages": 0,
+    "message": "3 results found"
+}
